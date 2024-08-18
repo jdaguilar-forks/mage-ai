@@ -199,8 +199,10 @@ class MySQL(BaseSQL):
             return 'TEXT'
         elif dtype == PandasTypes.BYTES:
             return 'VARBINARY(255)'
-        elif dtype in (PandasTypes.FLOATING, PandasTypes.DECIMAL, PandasTypes.MIXED_INTEGER_FLOAT):
+        elif dtype in (PandasTypes.DECIMAL, PandasTypes.MIXED_INTEGER_FLOAT):
             return 'DECIMAL'
+        elif dtype == (PandasTypes.FLOATING):
+            return 'FLOAT'
         elif dtype == PandasTypes.INTEGER:
             max_int, min_int = column.max(), column.min()
             if np.int16(max_int) == max_int and np.int16(min_int) == min_int:
